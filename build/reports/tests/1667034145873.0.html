@@ -1,0 +1,54 @@
+<html><head>
+  <script src="https://idemo.bspb.ru/public/lib/jquery.js"></script>
+  <link rel="stylesheet" href="https://idemo.bspb.ru/public/gen/lib.css?7b2971ef16">
+  <link rel="stylesheet" href="https://idemo.bspb.ru/public/gen/confirm.css?7b2971ef16">
+  
+</head>
+<body>
+  
+
+<form id="confirmation-form" action="https://idemo.bspb.ru/auth/confirm/post" method="post" class="form form-inline right">
+  <input type="hidden" name="confirmationKey" value="8fb00cac-fce9-47b8-9bda-1c0de997641e">
+  <input type="hidden" name="refreshToken" value="83e07430-ce0a-459c-a9ad-14880cef90e5">
+  <input type="hidden" name="customerId" value="1">
+  <input type="hidden" name="deviceData" value="">
+  <input type="hidden" name="align" value="right">
+
+  <div class="error">
+    Этот код устарел
+  </div>
+  <div class="controls-container">
+    
+    
+        <div class="uneditable-input auth-option">SMS *1111</div>
+    
+    
+
+<div id="sms-input" class="input-prepend">
+
+  
+
+  <input type="tel" name="otpCode" id="otp-input" class="input-mini" minlength="4" maxlength="4" autocomplete="off" autofocus="" value="0000">
+</div>
+
+<button id="confirm" class="btn btn-primary">Подтвердить</button>
+  </div>
+</form>
+
+<script>function ConfirmForm(n){function e(n){if(n.origin===window.parent.location.href){var e=n.data;"enable"===e?r():"disable"===e&&d.prop("disabled",!0)}}function i(){var e=$("[name=deviceData]",n);window.biZoneProxy&&e.val(window.biZoneProxy.getData())}function t(){return s.val().length===Number(s.attr("minlength"))}function o(){$.post(n.attr("action"),n.serialize()).then(function(e){n.replaceWith(e),$("#confirmation-form").enhanceWithin()})}function a(n,e){s.val(e).trigger("paste")}function r(){s.length&&!t()||!d.is(":not(.disabled-due-to-error)")||d.prop("disabled",!1)}var d=$("#confirm",n),s=$("#otp-input",n),c=$("[name=authOptionId]",n);this.start=function(){n.on("submit",function(){if(d.prop("disabled",!0),c.prop("disabled",!0),i(),$.mobile)return o(),!1}),c.on("change",function(e){e.preventDefault(),n.attr("action","/auth/confirm/auth-option").off("submit").submit()}),s.on("keyup paste input",function(){d.prop("disabled",!t()),window.parent.postMessage("confirm:change",window.location.href)}).trigger("keyup"),window.removeEventListener("message",e),window.addEventListener("message",e),window.parent.postMessage("confirm:ready",window.location.href),$(window).one("otpReceived",a)}}</script>
+<script>
+  new ConfirmForm($('#confirmation-form')).start();
+</script>
+
+
+  
+  <script src="https://idemo.bspb.ru/public/javascripts/bizone/bzfp.js"></script>
+  <script src="https://idemo.bspb.ru/public/javascripts/bizone/BiZoneProxy.js"></script>
+
+  <script>
+    window.biZoneProxy = new BiZoneProxy();
+  </script>
+
+
+
+</body></html>
